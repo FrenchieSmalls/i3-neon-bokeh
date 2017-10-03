@@ -20,4 +20,6 @@ rofi.lines:         10
 
 rofi.location: 		2
 
+rofi.columns:		2
+
 rofi.sidebar-mode:  true
