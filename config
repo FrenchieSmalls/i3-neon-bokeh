@@ -146,6 +146,7 @@ bindsym $mod+a focus parent
 # Rofi controls
 bindsym $mod+Tab exec --no-startup-id rofi -show run
 focus_follows_mouse no
+bindsym $mod+grave exec --no-startup-id rofi -show find -modi find:~/.local/share/rofi/finder.sh
 
 
 # start a terminal, tiled or floating
@@ -154,9 +155,9 @@ bindsym $mod+Shift+Return exec --no-startup-id xfce4-terminal --title FloatTerm
 for_window [title="FloatTerm"] floating enable, move absolute position center, resize grow left 150, resize grow right 150, resize grow down 100, resize grow up 100
 
 
-# open nautilus
+# open files
 bindsym $mod+Shift+f exec --no-startup-id nautilus
-
+bindsym Control+Shift+f exec --no-startup-id xterm -e ranger
 
 
 # blur lock screen
@@ -184,6 +185,7 @@ for_window [instance="xfce4-terminal" title="i3 Shortcuts"] floating enable, mov
 # specific floats
 for_window [window_role="pop-up"] floating enable
 for_window [class="Sxiv"] floating enable
+for_window [class="Eog"] floating enable
 
 
 # Goto marks
@@ -270,6 +272,17 @@ set $space8     " 8  |  medias "
 set $space9     " 9  |  miscs. "
 set $space10    " 10  |  etcs. "
 
+#set $space1     "1:  "
+#set $space2     "2:  "
+#set $space3     "3:  "
+#set $space4     "4:  "
+#set $space5     "5:  "
+#set $space6     "6:  "
+#set $space7     "7:  "
+#set $space8     "8:  "
+#set $space9     "9: miscs. "
+#set $space10    "10: etcs. "
+
 
 # set gaps by workspace
 workspace $space1 gaps outer 0
@@ -328,6 +341,7 @@ assign [class="Firefox"]                    $space1
 
 assign [class="Nautilus"]                   $space3
 assign [class="Spacefm"]                    $space3
+assign [class="XTerm"]                      $space3
 
 assign [class="Sublime_text"]               $space4
 assign [class="Gedit"]                      $space4
@@ -345,6 +359,7 @@ assign [class="VirtualBox"]                 $space7
 assign [class="Darktable"]                  $space7
 assign [class="Digikam"]                    $space7
 assign [class="Inkscape"]                   $space7
+assign [class="Hugin"]                      $space7
 assign [class="Rapid-photo-downloader"]     $space7
 
 assign [class="Spotify"]                    $space8
@@ -383,7 +398,7 @@ set $background     #203E4A
 set $background2    #D783F2
 set $background3    #2e8889
 set $focused        #73E5FF
-set $unfocused      #20364a00
+set $unfocused      #203E4ACC
 
 #set $unfocused #2ab399
 #terminal: #203E4A
@@ -392,10 +407,12 @@ set $unfocused      #20364a00
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 bar {
-        status_command i3status
-        separator_symbol "|"
+    status_command i3status
+    separator_symbol "|"
 
-        #tray_output primary
+    #tray_output primary
+
+    tray_padding 4
 
     colors {
             #color class           border      back.           text
@@ -436,7 +453,7 @@ client.urgent             $unfocused   $unfocused  $unfocused  $unfocused
 exec_always --no-startup-id feh --bg-scale /home/chris/Pictures/Wallpapers/bokeh.jpg
 
 # Start compton for Rofi and window border transparency
-exec --no-startup-id compton -b
+exec --no-startup-id compton -b -c
 
 
 # Enable trackpad tap-to-click
